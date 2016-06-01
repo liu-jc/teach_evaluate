@@ -19,6 +19,7 @@ def teach_evaluate(zjh,mm):
     jxpgurl = "http://zhjw.scu.edu.cn/jxpgXsAction.do"
     r = requests.get(jxpgurl + "?oper=listWj&pageSize=300",cookies = cook)
     bsObj = BeautifulSoup(r.text,"html.parser")
+    ok = False
     for item in bsObj.findAll("img",{"src":"/img/icon/edit.gif"}):
         params_in = dict()
         tmpstr = item.attrs["name"].split("#@")
@@ -41,12 +42,15 @@ def teach_evaluate(zjh,mm):
         params_post["zgpj"] = "good"
         #print(params_post)
         requests.post(jxpgurl+"?oper=wjpg",params_post,cookies = cook)
+        ok = True
         print(teacher_name + " " + class_name + "评教成功")
         #for ss in tmpstr:
         #    print(ss)
         #print(item.attrs["name"])
-
-    print("评教成功")
+    if ok is True:
+        print("评教成功")
+    else:
+        print("评教失败")
 
 if __name__ == "__main__":
     zjh = input("please input your username:")
