@@ -20,6 +20,13 @@ def teach_evaluate(zjh,mm):
     r = requests.get(jxpgurl + "?oper=listWj&pageSize=300",cookies = cook)
     bsObj = BeautifulSoup(r.text,"html.parser")
     ok = False
+    for item in bsObj.findAll("img",{"src":"/img/icon/view.gif"}):
+        #print(item.attrs["name"])
+        tmpstr = item.attrs["name"].split("#@")
+        teacher_name = tmpstr[2]
+        class_name = tmpstr[4]
+        print(teacher_name + " " + class_name + "已经评教")
+
     for item in bsObj.findAll("img",{"src":"/img/icon/edit.gif"}):
         params_in = dict()
         tmpstr = item.attrs["name"].split("#@")
