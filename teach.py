@@ -25,7 +25,7 @@ def teach_evaluate(zjh,mm):
         tmpstr = item.attrs["name"].split("#@")
         teacher_name = tmpstr[2]
         class_name = tmpstr[4]
-        print(teacher_name + " " + class_name + "已经评教")
+        print(teacher_name + " " + class_name + " 已经评教")
 
     for item in bsObj.findAll("img",{"src":"/img/icon/edit.gif"}):
         params_in = dict()
@@ -50,7 +50,7 @@ def teach_evaluate(zjh,mm):
         #print(params_post)
         requests.post(jxpgurl+"?oper=wjpg",params_post,cookies = cook)
         ok = True
-        print(teacher_name + " " + class_name + "评教成功")
+        print(teacher_name + " " + class_name + " 评教成功")
         #for ss in tmpstr:
         #    print(ss)
         #print(item.attrs["name"])
